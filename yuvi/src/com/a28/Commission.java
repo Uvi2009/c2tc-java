@@ -4,15 +4,32 @@ package com.a28;
 
 public class Commission {
 	String name,address;
-	int phone,sales_amount;
+	long phone;
+	int sales_amount;
+	double perct,commission;
 		
-	void getDetails(String name,String address,int phone , int sales_amount) {		
+	public Commission(String name,String address,long phone , int sales_amount) {		
 		this.name=name;
 		this.address=address;
 		this.phone=phone;
 		this.sales_amount=sales_amount;
+		calculate();
 	}
 	void calculate() {
+		if(sales_amount>=100000) {
+			perct=0.1;
+		}
+		else if (sales_amount<100000 && sales_amount>=50000) {
+			perct=0.05;
+		}
+		else if (sales_amount<50000 && sales_amount>=30000) {
+			perct=0.03;
+		}
+		else if (sales_amount<30000) {
+			perct=1;
+		}
+		commission=sales_amount*perct;
+		
 		
 	}
 	
@@ -31,7 +48,7 @@ public class Commission {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public int getPhone() {
+	public long getPhone() {
 		return phone;
 	}
 	public void setPhone(int phone) {
@@ -44,12 +61,12 @@ public class Commission {
 		this.sales_amount = sales_amount;
 	}
 
-
+	
 
 	@Override
 	public String toString() {
 		return "Commission [name=" + name + ", address=" + address + ", phone=" + phone + ", sales_amount="
-				+ sales_amount + "]";
+				+ sales_amount + ", perct=" + perct + ", commission=" + commission + "]";
 	}
 	
 	
